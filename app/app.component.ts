@@ -9,7 +9,7 @@ import { ListRestaurantComponent } from './list-restaurant.component';
   <div class="container">
   <h1>Hello, Portland</h1>
   <list-restaurant
-  [restaurantList]="restaurants"
+  [listRestaurant]="restaurants"
   >
   </list-restaurant>
   </div>
