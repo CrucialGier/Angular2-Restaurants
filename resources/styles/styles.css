@@ -1,11 +1,15 @@
-.task-form {
-  margin-top: 80px;
-  margin-bottom: 80px;
+.selected {
+  color: blue;
 }
 
-.add-button {
-  margin-bottom: 10px;
-  margin-left: 10px;
-  padding-top: 8px;
-  padding-bottom: 8px;
+.col-sm-5 {
+  border: 1px solid #CAEEFA;
+  height: 300px;
+  border-radius: 25px;
+  padding: 4% 8%;
+}
+
+p {
+  font-size: 1.5em;
+  line-height: 1em;
 }

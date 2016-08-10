@@ -1,18 +1,24 @@
 import { Component, EventEmitter } from 'angular2/core';
 import { Restaurant } from './restaurant.model';
 import { DisplayRestaurantComponent }  from './display-restaurant.component';
+import { EditRestaurantComponent } from './edit-restaurant.component';
 
 @Component ({
   selector: 'list-restaurant',
   inputs: ['listRestaurant'],
   outputs: ['onRestaurantSelect'],
-  directives: [DisplayRestaurantComponent],
+  directives: [DisplayRestaurantComponent, EditRestaurantComponent],
   template: `
+  <div class="col-sm-4">
   <display-restaurant *ngFor="#restaurant of listRestaurant"
   (click)="restaurantClicked(restaurant)"
   [class.selected]="restaurant === selectedRestaurant"
-  [restaurant]="restaurant">
+  [restaurant]="restaurant"
+  >
   </display-restaurant>
+  </div>
+  <edit-restaurant *ngIf="selectedRestaurant" [restaurant]="selectedRestaurant">
+  </edit-restaurant>
   `
 })
 
