@@ -19,7 +19,7 @@ import { NewRestaurantComponent } from './new-restaurant.component';
   >
   </display-restaurant>
   </div>
-  <edit-restaurant *ngIf="selectedRestaurant" [restaurant]="selectedRestaurant">
+  <edit-restaurant *ngIf="selectedRestaurant" [restaurant]="selectedRestaurant" (onDelete)='deleteRestaurant($event)'>
   </edit-restaurant>
   <new-restaurant (onSubmitNewRestaurant)='addRestaurant($event)'></new-restaurant>
   `
@@ -40,5 +40,13 @@ export class ListRestaurantComponent {
   addRestaurant(newRestaurant: Restaurant): void {
     console.log(newRestaurant);
     this.listRestaurant.push(newRestaurant);
+  }
+  deleteRestaurant(selectedRestaurant: Restaurant){
+    for(var i = 0; i < this.listRestaurant.length; i++) {
+      if (selectedRestaurant.name === this.listRestaurant[i].name && selectedRestaurant.location === this.listRestaurant[i].location) {
+        this.listRestaurant.splice(i, 1);
+        this.selectedRestaurant = null;
+      }
+    }
   }
 }

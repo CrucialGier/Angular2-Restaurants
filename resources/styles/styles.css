@@ -24,6 +24,12 @@ h5 {
   color: #FAB00A;
 }
 
+.delete {
+  position: absolute;
+  bottom: 16%;
+  color: #FABBEE;
+}
+
 .col-sm-3 {
   margin-left: 40%;
 }
