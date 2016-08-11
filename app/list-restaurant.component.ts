@@ -3,6 +3,7 @@ import { Restaurant } from './restaurant.model';
 import { DisplayRestaurantComponent }  from './display-restaurant.component';
 import { EditRestaurantComponent } from './edit-restaurant.component';
 import { NewRestaurantComponent } from './new-restaurant.component';
+import { SpecialtyPipe } from './specialty.pipe';
 
 
 @Component ({
@@ -10,9 +11,14 @@ import { NewRestaurantComponent } from './new-restaurant.component';
   inputs: ['listRestaurant'],
   outputs: ['onRestaurantSelect'],
   directives: [DisplayRestaurantComponent, EditRestaurantComponent, NewRestaurantComponent],
+  pipes: [SpecialtyPipe],
   template: `
   <div class="col-sm-4">
-  <display-restaurant *ngFor="#restaurant of listRestaurant"
+  <select (change)="onChange($event.target.value)">
+    <option *ngFor='#currentRestaurant of listRestaurant'>{{ currentRestaurant.specialty }}</option>
+    <option value="all" selected="selected">All restaurant</option>
+  </select>
+  <display-restaurant *ngFor="#restaurant of listRestaurant | specialty:chosenSpecialty"
   (click)="restaurantClicked(restaurant)"
   [class.selected]="restaurant === selectedRestaurant"
   [restaurant]="restaurant"
@@ -29,6 +35,7 @@ export class ListRestaurantComponent {
   public listRestaurant: Restaurant[];
   public onRestaurantSelect: EventEmitter<Restaurant>;
   public selectedRestaurant: Restaurant;
+  public chosenSpecialty: string = "all";
   constructor() {
     this.onRestaurantSelect = new EventEmitter();
   }
@@ -48,5 +55,8 @@ export class ListRestaurantComponent {
         this.selectedRestaurant = null;
       }
     }
+  }
+  onChange(specialtyFromMenu){
+    this.chosenSpecialty = specialtyFromMenu;
   }
 }
