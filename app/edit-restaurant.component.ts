@@ -13,20 +13,27 @@ import { Restaurant } from './restaurant.model';
     <input [(ngModel)]="restaurant.specialty" *ngIf="selectedDetail === 'specialty'"/>
     <p (click)='detailClicked("location")'>{{ restaurant.location }}</p>
     <input [(ngModel)]="restaurant.location" *ngIf="selectedDetail === 'location'"/>
-    <p>{{ avgRating }}</p>
+    <p class="star" *ngIf="avgRating === 1" >&#10031; </p>
+    <p class="star" *ngIf="avgRating === 2" >&#10031; &#10031; </p>
+    <p class="star" *ngIf="avgRating === 3" >&#10031; &#10031; &#10031; </p>
+    <p class="star" *ngIf="avgRating === 4" >&#10031; &#10031; &#10031; &#10031;</p>
+    <p class="star" *ngIf="avgRating === 5" >&#10031; &#10031; &#10031; &#10031; &#10031;</p>
+    <p class="rating-note" *ngIf="avgRating > 0">Out of {{ restaurant.rating.length }} reviews</p>
+    <hr>
     <div class="feedback">
       <label for="rating">Rate this restaurant</label>
       <select id="rating" #newRating>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
+        <option value="1">&#9733;</option>
+        <option value="2">&#9733; &#9733;</option>
+        <option value="3">&#9733; &#9733; &#9733;</option>
+        <option value="4">&#9733; &#9733; &#9733; &#9733;</option>
+        <option value="5">&#9733; &#9733; &#9733; &#9733; &#9733;</option>
       </select>
       <label for="wait">How long did you wait?</label>
       <input id="wait"/>
       <button (click)="submitRating(newRating)">Submit Rating</button>
     </div>
+    <hr>
     <h5 (click)='doneEditing()'>Done editing</h5><br>
     <h5 class="delete" (click)='chooseDelete(restaurant)'>Delete Restaurant...forever</h5>
   </div>
@@ -37,7 +44,7 @@ export class EditRestaurantComponent {
   public restaurant: Restaurant;
   public selectedDetail: string;
   public onDelete: EventEmitter<Restaurant>;
-  public avgRating = 0;
+  public avgRating: number = 0;
   constructor(){
     this.onDelete = new EventEmitter();
   }
@@ -56,6 +63,9 @@ export class EditRestaurantComponent {
     for(var currentRating of this.restaurant.rating){
       tempRating += currentRating;
     }
-    this.avgRating = tempRating / this.restaurant.rating.length;
+    this.avgRating = Math.round(tempRating / this.restaurant.rating.length);
+    // for(var i = 1; i <= tempRating; i++) {
+    //   this.avgRating += "&#x2730; ";
+    // }
   }
 }

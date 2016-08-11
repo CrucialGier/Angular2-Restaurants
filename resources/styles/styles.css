@@ -4,7 +4,7 @@
 
 .col-sm-5 {
   border: 3px solid #CAEEFA;
-  height: 400px;
+  height: 600px;
   border-radius: 25px;
   padding: 4% 8%;
 }
@@ -37,4 +37,13 @@ h5 {
 .feedback {
   position: absolute;
   bottom: 24%;
+}
+
+.star {
+  font-size: 2em;
+  color: #EDD015 ;
+}
+
+.rating-note {
+  font-size: .85em;
 }
