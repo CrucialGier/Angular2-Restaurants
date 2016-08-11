@@ -6,7 +6,7 @@ import { Restaurant } from './restaurant.model';
   inputs: ['restaurant'],
   outputs: ['onDelete'],
   template: `
-  <div class="col-sm-5 edit-restaurant">
+  <div class="col-sm-6 edit-restaurant">
     <h3 (click)='detailClicked("name")'>{{ restaurant.name }}</h3>
     <input [(ngModel)]="restaurant.name" *ngIf="selectedDetail === 'name'"/>
     <p (click)='detailClicked("specialty")'>{{ restaurant.specialty }}</p>
@@ -33,7 +33,6 @@ import { Restaurant } from './restaurant.model';
       <input id="wait"/>
       <button (click)="submitRating(newRating)">Submit Rating</button>
     </div>
-    <hr>
     <h5 (click)='doneEditing()'>Done editing</h5><br>
     <h5 class="delete" (click)='chooseDelete(restaurant)'>Delete Restaurant...forever</h5>
   </div>
@@ -64,8 +63,5 @@ export class EditRestaurantComponent {
       tempRating += currentRating;
     }
     this.avgRating = Math.round(tempRating / this.restaurant.rating.length);
-    // for(var i = 1; i <= tempRating; i++) {
-    //   this.avgRating += "&#x2730; ";
-    // }
   }
 }

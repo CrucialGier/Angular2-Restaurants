@@ -6,7 +6,7 @@ import { Restaurant } from './restaurant.model';
   outputs: ['onSubmitNewRestaurant'],
   template: `
     <div class="col-sm-3 input-lg restaurant-form">
-      <h2>Submit New Restaurant</h2>
+      <h2>Add a Restaurant</h2>
       <label for="name">Name</label>
       <input id="name" #name/>
       <label for="location">Location</label>
